@@ -18,10 +18,6 @@
   # Networking
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
-  networking.nameservers = [
-    "1.1.1.1"
-    "8.8.8.8"
-  ];
   # Firewall Configuration
   networking.firewall.allowedTCPPorts = [ ];
   networking.firewall.allowedUDPPorts = [ ];
@@ -42,6 +38,7 @@
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
+
 
   users.users.john = {
     isNormalUser = true;
@@ -87,6 +84,9 @@
     git
     firefox
     vscode
+    vlc
+    gpu-screen-recorder
+    gpu-screen-recorder-gtk
     rocmPackages.rocm-smi
     (pkgs.btop.override {
       rocmSupport = true;
