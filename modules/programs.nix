@@ -15,6 +15,7 @@
     git
     vscode
     docker
+    ghostty
     
     # Internet
     firefox
@@ -35,5 +36,8 @@
     (pkgs.btop.override {
       rocmSupport = true;
     })
+
+    # Other
+    signal-desktop
   ];
 }
