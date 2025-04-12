@@ -2,9 +2,13 @@
 
 {
   # Audio
-  hardware.pulseaudio.enable = true;
-  security.rtkit.enable = true;
-  
+  hardware.pulseaudio.enable = false;
+
+  services.pipewire = {
+    enable = true;
+    audio.enable = true;
+    pulse.enable = true;
+  };  
   # Input devices
   services.ratbagd.enable = true;
   
