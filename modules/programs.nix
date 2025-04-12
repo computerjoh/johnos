@@ -26,8 +26,9 @@
     # Gaming
     mumble
     prismlauncher
-    
+    r2modman
     # System Tools
+    solaar
     gpu-screen-recorder
     gpu-screen-recorder-gtk
     rocmPackages.rocm-smi
