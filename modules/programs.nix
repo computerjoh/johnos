@@ -16,7 +16,6 @@
     vscodium
     docker
     ghostty
-    godot
     
     # Internet
     firefox
@@ -29,7 +28,13 @@
     mumble
     prismlauncher
     r2modman
-    vintagestory
+    (pkgs.vintagestory.overrideDerivation (oldAttrs: rec {
+            version = "1.20.8";
+            src = fetchurl {
+              url = "https://cdn.vintagestory.at/gamefiles/stable/vs_client_linux-x64_${version}.tar.gz";
+              hash = "sha256-IINeXUpW894ipgyEB6jYcmeImIFLzADI+jIX6ADthH8=";
+            };
+          }))
     # System Tools
     solaar
     gpu-screen-recorder
@@ -40,6 +45,6 @@
     })
 
     # Other
-    signal-desktop
+    signal-desktop-bin
   ];
 }
