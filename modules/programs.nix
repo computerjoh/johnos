@@ -13,9 +13,10 @@
     # Development
     helix
     git
-    vscode
+    vscodium
     docker
     ghostty
+    godot
     
     # Internet
     firefox
@@ -28,6 +29,7 @@
     mumble
     prismlauncher
     r2modman
+    vintagestory
     # System Tools
     solaar
     gpu-screen-recorder
