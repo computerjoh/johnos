@@ -16,6 +16,8 @@
     vscodium
     docker
     ghostty
+    pkgs.qt5.full
+    pkgs.qtcreator
     
     # Internet
     firefox
