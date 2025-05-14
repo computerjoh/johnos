@@ -1,17 +1,17 @@
 {
-  description = "A very basic flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    home-manager.url = "github:nix-community/home-manager";
   };
 
-  outputs = { self, nixpkgs, ... }:
+  outputs = { self, nixpkgs, home-manager, ... }:
   {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      # Note that you cannot put arbitrary configuration here: the configuration must be placed in the files loaded via modules
+      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ./configuration.nix
+        home-manager.nixosModules.home-manager  # Integrating Home Manager module
       ];
     };
   };
