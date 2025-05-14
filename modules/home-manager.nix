@@ -6,10 +6,13 @@
     programs.home-manager.enable = true;
 
     programs.git = {
-      userName = "John Korhel";
-      userEmail = "john@korhel.net";
-      extraConfig.init.defaultBranch = "main";
+      enable = true;
+      extraConfig = {
+        user = {
+          name = "test";
+          email = "test";
+        };
+      };
     };
   };
-};
-
+}
