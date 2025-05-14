@@ -11,6 +11,7 @@
     ./modules/programs.nix
     ./modules/hardware.nix
     ./modules/wooting.nix
+    ./modules/systemd.nix
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
