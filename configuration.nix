@@ -11,12 +11,18 @@
     ./modules/programs.nix
     ./modules/hardware.nix
     ./modules/wooting.nix
-    ./modules/systemd.nix
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
     "dotnet-runtime-7.0.20"
   ];
+
+  nix.gc = {
+    automatic = true;
+    dates = "daily";
+    options = "--delete-older-than 30d";
+  };
+  
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
