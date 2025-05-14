@@ -2,8 +2,9 @@
 
 {
   home-manager.users.john = {
-    stateVersion = "24.11";
-    programs.git.enable = true;
+   home.stateVersion = "24.11";
+   programs.git.enable = true;
+   programs.home-manager.enable = true;
   };
 }
 
