@@ -9,8 +9,11 @@
       enable = true;
       extraConfig = {
         user = {
-          name = "test";
-          email = "test";
+          name = "John Korhel";
+          email = "john@korhel.net";
+        };
+        init = {
+          defaultBranch = "main";
         };
       };
     };
