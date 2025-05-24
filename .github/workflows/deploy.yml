@@ -1,57 +1,26 @@
-name: Auto Update + Deploy NixOS
+name: Push Test
 
 on:
-  schedule:
-    - cron: "0 6 * * 1" # Every Monday at 6 AM UTC
   workflow_dispatch:
 
 jobs:
-  update-and-deploy:
+  test-push:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout flake
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Nix
-        uses: cachix/install-nix-action@v25
-
-      - name: Update flake.lock
+      - name: Configure Git and Push with GH_PAT
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
-          nix flake update
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add flake.lock
-          git commit -m "auto: flake.lock update $(date -I)" || echo "No changes to commit"
+          date >> push-test.log
+          git add push-test.log
+          git commit -m "Push test at $(date -Iseconds)" || echo "No changes"
 
           git config --unset credential.helper || true
           git remote set-url origin https://x-access-token:${GH_PAT}@github.com/${{ github.repository }}
           git push origin HEAD:${{ github.ref_name }}
-
-      - name: Wake and Deploy via VPS
-        env:
-          VPS_DEPLOY_KEY: ${{ secrets.VPS_DEPLOY_KEY }}
-          VPS_HOST: ${{ vars.VPS_HOST }}
-          VPS_USER: ${{ vars.VPS_USER }}
-          NIXOS_USER: ${{ vars.NIXOS_USER }}
-          NIXOS_TAIL_IP: ${{ vars.NIXOS_TAIL_IP }}
-          NIXOS_MAC_ADDR: ${{ vars.NIXOS_MAC_ADDR }}
-          FLAKE_HOSTNAME: ${{ vars.FLAKE_HOSTNAME }}
-        run: |
-          echo "$VPS_DEPLOY_KEY" > key.pem
-          chmod 600 key.pem
-
-          ssh -o StrictHostKeyChecking=no -i key.pem $VPS_USER@$VPS_HOST <<EOF
-            wakeonlan $NIXOS_MAC_ADDR
-            sleep 90
-            ssh $NIXOS_USER@$NIXOS_TAIL_IP bash -c '
-              cd /etc/nixos &&
-              git pull &&
-              echo "Running nixos-rebuild test..." &&
-              sudo nixos-rebuild test --flake .#$FLAKE_HOSTNAME &&
-              echo "Test succeeded. Applying switch..." &&
-              sudo nixos-rebuild switch --flake .#$FLAKE_HOSTNAME
-            '
-          EOF
