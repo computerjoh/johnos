@@ -25,6 +25,8 @@ jobs:
           git config user.email "actions@github.com"
           git add flake.lock
           git commit -m "auto: flake.lock update $(date -I)" || echo "No changes to commit"
+
+          # 🔐 Inject the token for authenticated push
           git remote set-url origin https://x-access-token:${GH_PAT}@github.com/${{ github.repository }}
           git push origin HEAD:${{ github.ref_name }}
 
