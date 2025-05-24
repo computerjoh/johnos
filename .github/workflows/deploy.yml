@@ -2,8 +2,8 @@ name: Auto Update + Deploy NixOS
 
 on:
   schedule:
-    - cron: '0 6 * * 1'  # Every Monday at 6 AM UTC
-  workflow_dispatch:      # Allow manual trigger
+    - cron: "0 6 * * 1" # Every Monday at 6 AM UTC
+  workflow_dispatch:
 
 jobs:
   update-and-deploy:
@@ -17,13 +17,16 @@ jobs:
         uses: cachix/install-nix-action@v25
 
       - name: Update flake.lock
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           nix flake update
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add flake.lock
           git commit -m "auto: flake.lock update $(date -I)" || echo "No changes to commit"
-          git push
+          git remote set-url origin https://x-access-token:${GH_PAT}@github.com/${{ github.repository }}
+          git push origin HEAD:${{ github.ref_name }}
 
       - name: Wake and Deploy via VPS
         env:
@@ -41,6 +44,12 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i key.pem $VPS_USER@$VPS_HOST <<EOF
             wakeonlan $NIXOS_MAC_ADDR
             sleep 90
-            ssh $NIXOS_USER@$NIXOS_TAIL_IP \
-              'cd /etc/nixos && git pull && sudo nixos-rebuild switch --flake .#$FLAKE_HOSTNAME'
+            ssh $NIXOS_USER@$NIXOS_TAIL_IP bash -c '
+              cd /etc/nixos &&
+              git pull &&
+              echo "Running nixos-rebuild test..." &&
+              sudo nixos-rebuild test --flake .#$FLAKE_HOSTNAME &&
+              echo "Test succeeded. Applying switch..." &&
+              sudo nixos-rebuild switch --flake .#$FLAKE_HOSTNAME
+            '
           EOF
