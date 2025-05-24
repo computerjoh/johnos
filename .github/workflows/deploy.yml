@@ -46,9 +46,17 @@ jobs:
           chmod 600 key.pem
 
           ssh -o StrictHostKeyChecking=no -i key.pem $VPS_USER@$VPS_HOST <<EOF
-            wakeonlan $NIXOS_MAC_ADDR
+            echo "Waking up NixOS machine..."
+            python -c "
+              import socket
+              mac = bytes.fromhex('${NIXOS_MAC_ADDR//:/}')
+              s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+              s.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+              s.sendto(b'\xff'*6 + mac*16, ('255.255.255.255', 9))
+              "
             sleep 90
             ssh $NIXOS_USER@$NIXOS_TAIL_IP bash -c '
+              set -e
               cd /etc/nixos &&
               git pull &&
               echo "Running nixos-rebuild test..." &&
