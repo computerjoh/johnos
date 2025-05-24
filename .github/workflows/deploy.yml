@@ -64,4 +64,4 @@ jobs:
               echo "Test succeeded. Applying switch..." &&
               sudo nixos-rebuild switch --flake .#$FLAKE_HOSTNAME
             '
-EOF
+          EOF
