@@ -8,8 +8,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout with PAT
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PAT }}
 
       - name: Configure Git and Push with GH_PAT
         env:
@@ -20,7 +22,4 @@ jobs:
           date >> push-test.log
           git add push-test.log
           git commit -m "Push test at $(date -Iseconds)" || echo "No changes"
-
-          git config --unset credential.helper || true
-          git remote set-url origin https://x-access-token:${GH_PAT}@github.com/${{ github.repository }}
           git push origin HEAD:${{ github.ref_name }}
