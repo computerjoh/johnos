@@ -1,9 +1,21 @@
 {
   systemd.services.flake-update = {
-    description = "Update flake and rebuild NixOS";
+    description = "Pull latest config and rebuild NixOS";
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "/etc/nixos/update-and-rebuild.sh";
+      ExecStart = lib.mkForce (
+        pkgs.writeShellScript "flake-update" ''
+          set -euo pipefail
+          cd /etc/nixos
+          echo "[$(date)] Starting flake update..."
+
+          git pull origin main
+          nix flake update
+          nixos-rebuild switch --flake .#${config.networking.hostName}
+
+          echo "[$(date)] ✅ Flake update complete"
+        ''
+      );
     };
   };
 
@@ -16,4 +28,3 @@
     };
   };
 }
-
