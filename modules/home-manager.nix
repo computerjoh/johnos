@@ -17,5 +17,16 @@
         };
       };
     };
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscodium;
+    mutableExtensionsDir = true;
+    profiles = {};
+    extensions = with pkgs.vscode-extensions; [
+        github.copilot
+        jnoortheen.nix-ide
+        dbaeumer.vscode-eslint
+    ];
+  };
   };
 }

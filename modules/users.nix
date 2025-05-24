@@ -11,7 +11,6 @@
       "input"
       "plugdev"
     ];
-    packages = with pkgs; [ kdePackages.kate ];
     shell = pkgs.fish;
   };
 }

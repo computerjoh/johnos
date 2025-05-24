@@ -12,8 +12,6 @@
   environment.systemPackages = with pkgs; [
     # Development
     helix
-    vscodium
-    docker
     ghostty
     pkgs.qt5.full
     pkgs.qtcreator
