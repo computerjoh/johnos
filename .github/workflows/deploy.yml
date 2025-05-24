@@ -47,12 +47,21 @@ jobs:
 
           ssh -o StrictHostKeyChecking=no -i key.pem $VPS_USER@$VPS_HOST <<EOF
             echo "Waking up NixOS machine..."
-              mac_no_colons="${NIXOS_MAC_ADDR//:/}"
-              packet=""
-              for i in {1..6}; do packet+="\xff"; done
-              for i in {1..16}; do
-                packet+="\\x${mac_no_colons:0:2}\\x${mac_no_colons:2:2}\\x${mac_no_colons:4:2}\\x${mac_no_colons:6:2}\\x${mac_no_colons:8:2}\\x${mac_no_colons:10:2}"
-              done
-              echo -ne "$packet" | nc -w1 -u 255.255.255.255 9
+            mac_no_colons="${NIXOS_MAC_ADDR//:/}"
+            packet=""
+            for i in {1..6}; do packet+="\xff"; done
+            for i in {1..16}; do
+              packet+="\\x${mac_no_colons:0:2}\\x${mac_no_colons:2:2}\\x${mac_no_colons:4:2}\\x${mac_no_colons:6:2}\\x${mac_no_colons:8:2}\\x${mac_no_colons:10:2}"
+            done
+            echo -ne "$packet" | nc -w1 -u 255.255.255.255 9
+            sleep 90
+            ssh $NIXOS_USER@$NIXOS_TAIL_IP bash -c '
+              set -e
+              cd /etc/nixos &&
+              git pull &&
+              echo "Running nixos-rebuild test..." &&
+              sudo nixos-rebuild test --flake .#$FLAKE_HOSTNAME &&
+              echo "Test succeeded. Applying switch..." &&
+              sudo nixos-rebuild switch --flake .#$FLAKE_HOSTNAME
             '
-          EOF
+EOF
