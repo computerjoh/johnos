@@ -5,6 +5,7 @@
 }: {
   programs.steam.enable = true;
   programs.gamemode.enable = true;
+  programs.fish.enable = true;
   environment.systemPackages = with pkgs; [
     solaar
     rocmPackages.rocm-smi

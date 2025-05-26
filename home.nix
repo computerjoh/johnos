@@ -27,6 +27,7 @@
 
   programs.firefox = {
     enable = true;
+
     policies = {
       DisableTelemetry = true;
       DisableFirefoxStudies = true;
@@ -45,6 +46,7 @@
 
     profiles.default = {
       isDefault = true;
+
       settings = {
         "privacy.trackingprotection.enabled" = true;
         "privacy.trackingprotection.socialtracking.enabled" = true;
@@ -64,7 +66,7 @@
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
       };
 
-      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+      extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
         ublock-origin
         bitwarden
       ];
@@ -84,16 +86,18 @@
     enable = true;
     package = pkgs.vscodium;
     mutableExtensionsDir = true;
-    extensions = with pkgs.vscode-extensions; [
-      github.copilot
-      kamadorueda.alejandra
-      dbaeumer.vscode-eslint
-      jnoortheen.nix-ide
-    ];
-    userSettings = {
-      "nix.formatterPath" = "alejandra";
+    profiles = {
+      default = {
+        extensions = with pkgs.vscode-extensions; [
+          github.copilot
+          kamadorueda.alejandra
+          dbaeumer.vscode-eslint
+          jnoortheen.nix-ide
+        ];
+        userSettings = {
+          "nix.formatterPath" = "alejandra";
+        };
+      };
     };
   };
-
-  programs.fish.enable = true;
 }
