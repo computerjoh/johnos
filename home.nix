@@ -24,6 +24,10 @@
     }))
     trezor-suite
   ];
+  programs.plasma = {
+    enable = true;
+    overrideConfig = true;
+  };
 
   programs.firefox = {
     enable = true;
