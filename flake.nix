@@ -24,7 +24,7 @@
         modules = [
           ./configuration.nix
           home-manager.nixosModules.home-manager
-          ({ lib, ... }: {
+          ({lib, ...}: {
             boot.initrd.availableKernelModules = [];
             boot.kernelModules = [];
             hardware.enableAllFirmware = false;
