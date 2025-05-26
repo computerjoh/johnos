@@ -1,4 +1,4 @@
-name: Auto-update flake.lock
+name: Flake Auto Update and Badge Generator
 
 on:
   schedule:
@@ -22,9 +22,42 @@ jobs:
       - name: Update flake.lock
         run: nix flake update
 
-      - name: Commit and push
+      - name: Commit and push flake.lock
         run: |
           git config user.name "danerieberbot"
           git config user.email "danebot@proton.me"
           git commit -am "chore: flake bump 🌱" || echo "No changes"
+          git push
+
+  badges:
+    runs-on: ubuntu-latest
+    needs: update
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: cachix/install-nix-action@v24
+
+      - name: Get current date
+        id: date
+        run: echo "date=$(date +%Y-%m-%d)" >> $GITHUB_OUTPUT
+
+      - name: Write badge JSON files
+        run: |
+          mkdir -p badges
+          echo "{
+            \"schemaVersion\": 1,
+            \"label\": \"last flake update\",
+            \"message\": \"${{ steps.date.outputs.date }}\",
+            \"color\": \"green\"
+          }" > badges/last-update.json
+
+      - name: Commit and push badge
+        run: |
+          git config user.name "danerieberbot"
+          git config user.email "danebot@proton.me"
+          git add badges/*.json
+          git commit -m "chore: update dynamic badges 🏷️" || echo "No badge changes"
           git push
