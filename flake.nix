@@ -10,26 +10,27 @@
     home-manager,
     ...
   }: {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./configuration.nix
-        home-manager.nixosModules.home-manager # Integrating Home Manager module
-      ];
+    nixosConfigurations = {
+      nixos = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./configuration.nix
+          home-manager.nixosModules.home-manager
+        ];
+      };
+
+      ci = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./configuration.nix
+          home-manager.nixosModules.home-manager
+          ({ lib, ... }: {
+            boot.initrd.availableKernelModules = [];
+            boot.kernelModules = [];
+            hardware.enableAllFirmware = false;
+          })
+        ];
+      };
     };
-    {
-    nixosConfigurations.ci = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./configuration.nix
-        home-manager.nixosModules.home-manager
-        ({ lib, ... }: {
-          boot.initrd.availableKernelModules = [];
-          boot.kernelModules = [];
-          hardware.enableAllFirmware = false;
-        })
-      ];
-    };
-  };
   };
 }
