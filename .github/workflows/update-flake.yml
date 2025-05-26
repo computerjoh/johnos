@@ -1,4 +1,4 @@
-name: Flake Auto Update and Badge Generator
+name: Flake Auto Update
 
 on:
   schedule:
@@ -47,7 +47,7 @@ jobs:
       - name: Build system and get size
         id: size
         run: |
-          nix build .#nixosConfigurations.johnos.config.system.build.toplevel -o result
+          nix build .#nixosConfigurations.nixos.config.system.build.toplevel -o result
           size_bytes=$(nix path-info -S ./result | cut -f2 -d' ')
           size_mb=$(echo "scale=1; $size_bytes / 1024 / 1024" | bc)
           echo "size=${size_mb}MB" >> $GITHUB_OUTPUT
