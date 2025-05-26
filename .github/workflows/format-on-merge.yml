@@ -1,0 +1,31 @@
+name: Format Nix files on merge
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: cachix/install-nix-action@v24
+
+      - name: Install alejandra
+        run: nix profile install nixpkgs#alejandra
+
+      - name: Run formatter
+        run: alejandra .
+
+      - name: Commit and push formatting changes
+        run: |
+          git config user.name "danerieberbot"
+          git config user.email "danebot@proton.me"
+          git diff --quiet || (git commit -am "style: format with alejandra 🧼" && git push)

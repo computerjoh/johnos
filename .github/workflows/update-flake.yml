@@ -1,0 +1,30 @@
+name: Auto-update flake.lock
+
+on:
+  schedule:
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: cachix/install-nix-action@v24
+
+      - name: Update flake.lock
+        run: nix flake update
+
+      - name: Commit and push
+        run: |
+          git config user.name "danerieberbot"
+          git config user.email "danebot@proton.me"
+          git commit -am "chore: flake bump 🌱" || echo "No changes"
+          git push
