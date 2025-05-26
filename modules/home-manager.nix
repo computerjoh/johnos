@@ -31,6 +31,9 @@
             dbaeumer.vscode-eslint
             jnoortheen.nix-ide
           ];
+          userSettings = {
+            "nix.formatterPath" = "alejandra";
+          };
         };
       };
     };

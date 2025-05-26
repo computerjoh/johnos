@@ -17,6 +17,7 @@
     ghostty
     pkgs.qt5.full
     pkgs.qtcreator
+    alejandra
 
     # Internet
     firefox
