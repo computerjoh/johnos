@@ -23,12 +23,16 @@
       enable = true;
       package = pkgs.vscodium;
       mutableExtensionsDir = true;
-      profiles = {};
-      extensions = with pkgs.vscode-extensions; [
-        github.copilot
-        jnoortheen.nix-ide
-        dbaeumer.vscode-eslint
-      ];
+      profiles = {
+        default = {
+          extensions = with pkgs.vscode-extensions; [
+            github.copilot
+            kamadorueda.alejandra
+            dbaeumer.vscode-eslint
+            jnoortheen.nix-ide
+          ];
+        };
+      };
     };
   };
 }

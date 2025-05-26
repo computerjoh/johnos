@@ -44,14 +44,6 @@ jobs:
         id: date
         run: echo "date=$(date +%Y-%m-%d)" >> $GITHUB_OUTPUT
 
-      - name: Build system and get size
-        id: size
-        run: |
-          nix build .#nixosConfigurations.ci.config.system.build.toplevel -o result
-          size_bytes=$(nix path-info -S ./result | cut -f2 -d' ')
-          size_mb=$(echo "scale=1; $size_bytes / 1024 / 1024" | bc)
-          echo "size=${size_mb}MB" >> $GITHUB_OUTPUT
-
       - name: Write badge JSON files
         run: |
           mkdir -p badges
@@ -61,13 +53,6 @@ jobs:
             \"message\": \"${{ steps.date.outputs.date }}\",
             \"color\": \"green\"
           }" > badges/last-update.json
-
-          echo "{
-            \"schemaVersion\": 1,
-            \"label\": \"system size\",
-            \"message\": \"${{ steps.size.outputs.size }}\",
-            \"color\": \"blue\"
-          }" > badges/system-size.json
 
       - name: Commit and push badges
         run: |
