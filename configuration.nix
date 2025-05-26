@@ -12,7 +12,6 @@
     ./modules/desktop.nix
     ./modules/programs.nix
     ./modules/hardware.nix
-    ./modules/wooting.nix
   ];
 
   nixpkgs.config.permittedInsecurePackages = [

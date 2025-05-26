@@ -12,4 +12,5 @@
   services.ratbagd.enable = true;
   services.printing.enable = true;
   services.fstrim.enable = true;
+  hardware.wooting.enable = true;
 }
