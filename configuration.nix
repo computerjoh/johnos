@@ -13,7 +13,6 @@
     ./modules/programs.nix
     ./modules/hardware.nix
     ./modules/wooting.nix
-    ./modules/home-manager.nix
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
