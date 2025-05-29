@@ -13,4 +13,6 @@
   services.printing.enable = true;
   services.fstrim.enable = true;
   hardware.wooting.enable = true;
+  hardware.logitech.wireless.enable = true;
+  hardware.logitech.wireless.enableGraphical = true;
 }
