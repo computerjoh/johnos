@@ -27,6 +27,12 @@
   programs.plasma = {
     enable = true;
     overrideConfig = true;
+    kscreenlocker.autoLock = false;
+    startup.startupScript."solaar" = {
+      text = "${pkgs.solaar}/bin/solaar --window=hide &";
+      priority = 5;
+      runAlways = true;
+    };
   };
 
   programs.firefox = {
