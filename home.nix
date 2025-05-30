@@ -36,6 +36,7 @@
     workspace = {
       lookAndFeel = "org.kde.breezedark.desktop";
       theme = "breeze-dark";
+      iconTheme = "Papirus";
     };
     kwin.effects = {
       minimization.animation = "off";
