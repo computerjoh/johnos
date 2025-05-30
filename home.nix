@@ -33,6 +33,14 @@
       priority = 5;
       runAlways = true;
     };
+    workspace = {
+      lookAndFeel = "org.kde.breezedark.desktop";
+      theme = "breeze-dark";
+    };
+    kwin.effects = {
+      minimization.animation = "off";
+      windowOpenClose.animation = "off";
+    };
   };
 
   programs.firefox = {
