@@ -45,8 +45,8 @@
       };
       displayBrightness = 100;
       turnOffDisplay = {
-        idleTimeout = null;
-        idleTimeoutWhenLocked = 600000;
+        idleTimeout = "never";
+        idleTimeoutWhenLocked = null;
       };
       powerProfile = "performance";
       whenSleepingEnter = null;
