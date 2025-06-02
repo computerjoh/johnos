@@ -27,7 +27,30 @@
   programs.plasma = {
     enable = true;
     overrideConfig = true;
-    kscreenlocker.autoLock = false;
+    kscreenlocker = {
+      autoLock = false;
+      timeout = 0;
+      lockOnResume = false;
+      passwordRequired = false;
+      lockOnStartup = false;
+    };
+    powerdevil.AC = {
+      autoSuspend = {
+        action = "nothing";
+        idleTimeout = null;
+      };
+      dimDisplay = {
+        enable = false;
+        idleTimeout = null;
+      };
+      displayBrightness = 100;
+      turnOffDisplay = {
+        idleTimeout = null;
+        idleTimeoutWhenLocked = 600000;
+      };
+      powerProfile = "performance";
+      whenSleepingEnter = null;
+    };
     startup.startupScript."solaar" = {
       text = "${pkgs.solaar}/bin/solaar --window=hide &";
       priority = 5;

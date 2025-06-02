@@ -8,7 +8,7 @@
   programs.fish.enable = true;
   environment.systemPackages = with pkgs; [
     solaar
-    spotify-qt
+    spotify
     rocmPackages.rocm-smi
     (pkgs.btop.override {
       rocmSupport = true;
