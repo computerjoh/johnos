@@ -7,11 +7,8 @@
 
   home.packages = with pkgs; [
     signal-desktop-bin
-    helix
     ghostty
     alejandra
-    vlc
-    shotcut
     mumble
     prismlauncher
     r2modman
@@ -22,7 +19,6 @@
         hash = "sha256-IINeXUpW894ipgyEB6jYcmeImIFLzADI+jIX6ADthH8=";
       };
     }))
-    trezor-suite
   ];
   programs.plasma = {
     enable = true;

@@ -29,13 +29,6 @@
     "flakes"
   ];
 
-  system.autoUpgrade = {
-    enable = true;
-    flake = "github:computerjoh/johnos#nixos";
-    allowReboot = true;
-    dates = "03:00";
-  };
-
   nixpkgs.config.allowUnfree = true;
 
   system.stateVersion = "24.11";
