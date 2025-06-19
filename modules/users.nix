@@ -9,7 +9,6 @@
     extraGroups = [
       "networkmanager"
       "wheel"
-      "gamemode"
       "input"
       "plugdev"
     ];

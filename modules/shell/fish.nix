@@ -3,8 +3,6 @@
   pkgs,
   ...
 }: {
-  programs.steam.enable = true;
-  programs.gamemode.enable = true;
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
@@ -13,11 +11,4 @@
       end
     '';
   };
-  environment.systemPackages = with pkgs; [
-    solaar
-    rocmPackages.rocm-smi
-    (pkgs.btop.override {
-      rocmSupport = true;
-    })
-  ];
 }

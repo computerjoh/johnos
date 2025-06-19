@@ -10,12 +10,16 @@
     ./modules/localization.nix
     ./modules/users.nix
     ./modules/desktop.nix
-    ./modules/programs.nix
-    ./modules/hardware.nix
+    ./modules/shell/fish.nix
+    ./modules/programs/steam.nix
+    ./modules/services/pipewire.nix
+    ./modules/services/fstrim.nix
+    ./modules/hardware/mouse.nix
+    ./modules/hardware/keyboard.nix
   ];
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "dotnet-runtime-7.0.20"
+  environment.systemPackages = with pkgs; [
+    solaar
   ];
 
   nix.gc = {
