@@ -20,6 +20,11 @@
 
   environment.systemPackages = with pkgs; [
     solaar
+    alejandra
+    mumble
+    signal-desktop-bin
+    prismlauncher
+    r2modman
   ];
 
   nix.gc = {
