@@ -61,6 +61,20 @@
       minimization.animation = "off";
       windowOpenClose.animation = "off";
     };
+    input.mice = [
+      {
+        acceleration = 0.0;
+        accelerationProfile = "none";
+        enable = true;
+        leftHanded = false;
+        middleButtonEmulation = false;
+        name = "Logitech USB Receiver";
+        naturalScroll = false;
+        productId = "c547";
+        scrollSpeed = 1;
+        vendorId = "046d";
+      }
+    ];
   };
 
   programs.firefox = {
