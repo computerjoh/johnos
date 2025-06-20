@@ -44,19 +44,31 @@
       minimization.animation = "off";
       windowOpenClose.animation = "off";
     };
-    input.mice = [
-      {
+    input.mice = let
+      mkMouse = {
+        name,
+        productId,
+      }: {
         acceleration = 0.0;
         accelerationProfile = "none";
         enable = true;
         leftHanded = false;
         middleButtonEmulation = false;
-        name = "Logitech USB Receiver";
         naturalScroll = false;
-        productId = "c547";
         scrollSpeed = 1;
         vendorId = "046d";
-      }
-    ];
+        inherit name productId;
+      };
+    in
+      map mkMouse [
+        {
+          name = "Logitech USB Receiver";
+          productId = "c547";
+        }
+        {
+          name = "Logitech PRO X Wireless";
+          productId = "c094";
+        }
+      ];
   };
 }
