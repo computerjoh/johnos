@@ -1,4 +1,3 @@
-{ ...
-}: {
+{...}: {
   hardware.wooting.enable = true;
 }

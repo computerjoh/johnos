@@ -1,6 +1,4 @@
-{ pkgs
-, ...
-}: {
+{pkgs, ...}: {
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
@@ -18,7 +16,7 @@
           "nix.serverSettings" = {
             "nixd" = {
               "formatting" = {
-                "command" = [ "nixpkgs-fmt" ];
+                "command" = ["alejandra"];
               };
             };
           };
@@ -30,6 +28,6 @@
 
   home.packages = with pkgs; [
     nixd
-    nixpkgs-fmt
+    alejandra
   ];
 }
