@@ -19,30 +19,30 @@
     };
   };
 
-  outputs = inputs @ {
-    nixpkgs,
-    home-manager,
-    nur,
-    plasma-manager,
-    ...
-  }: {
-    nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            nixpkgs.overlays = [nur.overlays.default];
-            home-manager.sharedModules = [
-              plasma-manager.homeManagerModules.plasma-manager
-            ];
-            home-manager.users.john = import ./home.nix;
-          }
-        ];
+  outputs =
+    { nixpkgs
+    , home-manager
+    , nur
+    , plasma-manager
+    , ...
+    }: {
+      nixosConfigurations = {
+        nixos = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              nixpkgs.overlays = [ nur.overlays.default ];
+              home-manager.sharedModules = [
+                plasma-manager.homeManagerModules.plasma-manager
+              ];
+              home-manager.users.john = import ./home.nix;
+            }
+          ];
+        };
       };
     };
-  };
 }

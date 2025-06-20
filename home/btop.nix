@@ -1,12 +1,12 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{ pkgs
+, ...
+}:
+let
   btopWithRocm = pkgs.btop.override {
     rocmSupport = true;
   };
-in {
+in
+{
   programs.btop = {
     enable = true;
     package = btopWithRocm;

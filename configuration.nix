@@ -1,7 +1,5 @@
-{
-  config,
-  pkgs,
-  ...
+{ pkgs
+, ...
 }: {
   imports = [
     ./hardware-configuration.nix
@@ -20,7 +18,6 @@
 
   environment.systemPackages = with pkgs; [
     solaar
-    alejandra
     mumble
     signal-desktop-bin
     prismlauncher

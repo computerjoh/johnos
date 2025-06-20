@@ -1,7 +1,5 @@
-{
-  config,
-  pkgs,
-  ...
+{ pkgs
+, ...
 }: {
   programs.vscode = {
     enable = true;
@@ -11,14 +9,27 @@
       default = {
         extensions = with pkgs.vscode-extensions; [
           github.copilot
-          kamadorueda.alejandra
           dbaeumer.vscode-eslint
           jnoortheen.nix-ide
         ];
         userSettings = {
-          "nix.formatterPath" = "alejandra";
+          "nix.enableLanguageServer" = true;
+          "nix.serverPath" = "nixd";
+          "nix.serverSettings" = {
+            "nixd" = {
+              "formatting" = {
+                "command" = [ "nixpkgs-fmt" ];
+              };
+            };
+          };
+          "editor.formatOnSave" = true;
         };
       };
     };
   };
+
+  home.packages = with pkgs; [
+    nixd
+    nixpkgs-fmt
+  ];
 }

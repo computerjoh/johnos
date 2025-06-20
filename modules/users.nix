@@ -1,7 +1,5 @@
-{
-  config,
-  pkgs,
-  ...
+{ pkgs
+, ...
 }: {
   users.users.john = {
     isNormalUser = true;
