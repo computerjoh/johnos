@@ -16,6 +16,9 @@
         "nix.serverPath" = "nil";
         "nix.serverSettings" = {
           "nil" = {
+            "diagnostics" = {
+              "ignored" = ["unused_binding" "unused_with"];
+            };
             "formatting" = {
               "command" = ["alejandra"];
             };
