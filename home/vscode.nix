@@ -13,10 +13,9 @@
       userSettings = {
         "editor.formatOnSave" = true;
         "nix.enableLanguageServer" = true;
-        "nix.serverPath" = "nixd";
-        "nix.diagnostics.ignoreWarnings" = true;
+        "nix.serverPath" = "nil";
         "nix.serverSettings" = {
-          "nixd" = {
+          "nil" = {
             "formatting" = {
               "command" = ["alejandra"];
             };
@@ -27,7 +26,7 @@
   };
 
   home.packages = with pkgs; [
-    nixd
+    nil
     alejandra
   ];
 }

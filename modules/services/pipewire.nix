@@ -1,4 +1,8 @@
-_: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   security.rtkit.enable = true;
 
   services.pipewire = {

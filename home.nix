@@ -1,4 +1,8 @@
-_: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   imports = [
     ./home/git.nix
     ./home/firefox.nix
