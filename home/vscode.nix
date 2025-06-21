@@ -7,19 +7,9 @@
       default = {
         extensions = with pkgs.vscode-extensions; [
           github.copilot
-          dbaeumer.vscode-eslint
-          jnoortheen.nix-ide
+          kamadorueda.alejandra
         ];
         userSettings = {
-          "nix.enableLanguageServer" = true;
-          "nix.serverPath" = "nixd";
-          "nix.serverSettings" = {
-            "nixd" = {
-              "formatting" = {
-                "command" = ["alejandra"];
-              };
-            };
-          };
           "editor.formatOnSave" = true;
         };
       };
