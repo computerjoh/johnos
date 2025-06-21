@@ -1,4 +1,4 @@
-{...}: {
+_: {
   imports = [
     ./home/git.nix
     ./home/firefox.nix

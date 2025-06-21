@@ -1,9 +1,13 @@
-{...}: {
-  services.xserver.enable = true;
-  services.desktopManager.plasma6.enable = true;
-  services.displayManager.sddm.enable = true;
-  services.displayManager.autoLogin = {
-    enable = true;
-    user = "john";
+_: {
+  services = {
+    xserver.enable = true;
+    desktopManager.plasma6.enable = true;
+    displayManager = {
+      sddm.enable = true;
+      autoLogin = {
+        enable = true;
+        user = "john";
+      };
+    };
   };
 }
