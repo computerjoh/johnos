@@ -10,6 +10,7 @@
     ./modules/programs/steam.nix
     ./modules/services/pipewire.nix
     ./modules/services/fstrim.nix
+    ./modules/services/music.nix
     ./modules/hardware/mouse.nix
     ./modules/hardware/keyboard.nix
   ];
@@ -20,6 +21,7 @@
     signal-desktop-bin
     prismlauncher
     r2modman
+    streamrip
   ];
 
   nix.gc = {
