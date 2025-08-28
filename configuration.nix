@@ -37,5 +37,7 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  programs.gamescope.enable = true;
+
   system.stateVersion = "24.11";
 }
