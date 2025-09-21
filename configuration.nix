@@ -8,6 +8,7 @@
     ./modules/desktop.nix
     ./modules/shell/fish.nix
     ./modules/programs/steam.nix
+    ./modules/programs/gamemode.nix
     ./modules/services/pipewire.nix
     ./modules/services/fstrim.nix
     ./modules/services/music.nix

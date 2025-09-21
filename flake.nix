@@ -37,7 +37,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               sharedModules = [
-                plasma-manager.homeManagerModules.plasma-manager
+                plasma-manager.homeModules.plasma-manager
               ];
               users.john = import ./home.nix;
             };
