@@ -13,6 +13,7 @@
     ./home/vesktop.nix
     ./home/helix.nix
     ./home/vscode.nix
+    ./home/mangohud.nix
   ];
   home.stateVersion = "24.11";
 }
