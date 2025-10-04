@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [
+    ./home/fish.nix
     ./home/git.nix
     ./home/firefox.nix
     ./home/plasma.nix
@@ -16,4 +17,5 @@
     ./home/mangohud.nix
   ];
   home.stateVersion = "24.11";
+  home.shell.enableFishIntegration = true;
 }

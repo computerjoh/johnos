@@ -6,7 +6,6 @@
     ./modules/localization.nix
     ./modules/users.nix
     ./modules/desktop.nix
-    ./modules/shell/fish.nix
     ./modules/programs/steam.nix
     ./modules/programs/gamemode.nix
     ./modules/services/pipewire.nix
@@ -39,6 +38,8 @@
   nixpkgs.config.allowUnfree = true;
 
   programs.gamescope.enable = true;
+
+  programs.fish.enable = true;
 
   system.stateVersion = "24.11";
 }
