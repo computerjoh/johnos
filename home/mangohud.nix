@@ -6,9 +6,34 @@
   programs.mangohud = {
     enable = true;
     enableSessionWide = true;
+
     settings = {
-      full = true;
-      fps_limit = 245;
+      legacy_layout = false;
+      background_alpha = 0.6;
+      round_corners = 0;
+      background_color = "000000";
+
+      font_size = 24;
+      text_color = "FFFFFF";
+      position = "top-left";
+
+      table_columns = 3;
+      gpu_text = "GPU";
+      cpu_text = "CPU";
+
+      fps = true;
+      fps_limit_method = "late";
+      fps_limit = 0;
+      fps_color_change = true;
+      fps_color = "B22222,FDFD09,39F900";
+      fps_value = "30,60";
+
+      output_folder = "/home/john";
+      log_duration = 30;
+      autostart_log = 0;
+      log_interval = 100;
+
+      blacklist = "pamac-manager,lact,ghb,bitwig-studio,ptyxis,yumex";
     };
   };
 }
