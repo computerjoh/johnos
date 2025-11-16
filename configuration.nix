@@ -22,6 +22,9 @@
     prismlauncher
     r2modman
     streamrip
+    codex
+    obsidian
+    ffmpeg
   ];
 
   nix.gc = {
