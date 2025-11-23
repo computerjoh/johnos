@@ -5,9 +5,11 @@
 }: {
   programs.git = {
     enable = true;
-    userName = "John Korhel";
-    userEmail = "john@korhel.net";
-    extraConfig = {
+    settings = {
+      user = {
+        name = "John Korhel";
+        email = "john@korhel.net";
+      };
       init.defaultBranch = "main";
     };
   };
