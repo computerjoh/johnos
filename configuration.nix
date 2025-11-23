@@ -25,6 +25,8 @@
     codex
     obsidian
     ffmpeg
+    code-cursor
+    google-chrome
   ];
 
   nix.gc = {
