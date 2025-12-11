@@ -6,14 +6,24 @@
 
     profiles.default = {
       extensions = with pkgs.vscode-extensions; [
-        github.copilot
         jnoortheen.nix-ide
+        biomejs.biome
       ];
 
       userSettings = {
         "editor.formatOnSave" = true;
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = "nil";
+        "editor.codeActionsOnSave" = {
+          "source.fixAll.biome" = "explicit";
+          "source.organizeImports.biome" = "explicit";
+        };
+        "[javascriptreact]" = {
+          "editor.defaultFormatter" = "biomejs.biome";
+        };
+        "[javascript]" = {
+          "editor.defaultFormatter" = "biomejs.biome";
+        };
         "nix.serverSettings" = {
           "nil" = {
             "diagnostics" = {
