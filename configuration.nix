@@ -26,6 +26,7 @@
     obsidian
     ffmpeg
     code-cursor
+    zoom-us
   ];
 
   nix.gc = {
