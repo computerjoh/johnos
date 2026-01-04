@@ -21,6 +21,9 @@
         "[javascriptreact]" = {
           "editor.defaultFormatter" = "biomejs.biome";
         };
+        "[astro]" = {
+          "editor.defaultFormatter" = "biomejs.biome";
+        };
         "[javascript]" = {
           "editor.defaultFormatter" = "biomejs.biome";
         };

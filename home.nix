@@ -11,7 +11,7 @@
     ./home/starship.nix
     ./home/btop.nix
     ./home/ghostty.nix
-    ./home/vesktop.nix
+    ./home/discord.nix
     ./home/helix.nix
     ./home/vscode.nix
     ./home/mangohud.nix
