@@ -7,6 +7,7 @@
       "wheel"
       "input"
       "plugdev"
+      "docker"
     ];
     shell = pkgs.fish;
   };
