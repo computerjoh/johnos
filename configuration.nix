@@ -27,7 +27,6 @@
     ffmpeg
     code-cursor
     zoom-us
-    chromium
   ];
 
   nix.gc = {
