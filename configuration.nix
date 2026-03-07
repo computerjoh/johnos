@@ -18,7 +18,7 @@
   environment.systemPackages = with pkgs; [
     solaar
     mumble
-    signal-desktop-bin
+    signal-desktop
     prismlauncher
     r2modman
     streamrip

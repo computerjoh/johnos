@@ -15,6 +15,7 @@
     ./home/vscode.nix
     ./home/mangohud.nix
     ./home/chromium.nix
+    ./home/spotify.nix
   ];
   home.stateVersion = "24.11";
   home.shell.enableFishIntegration = true;
