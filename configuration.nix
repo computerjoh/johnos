@@ -22,7 +22,7 @@
     prismlauncher
     r2modman
     streamrip
-    codex
+    claude-code
     obsidian
     ffmpeg
     code-cursor
