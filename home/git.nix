@@ -12,5 +12,6 @@
       };
       init.defaultBranch = "main";
     };
+    signing.format = "openpgp";
   };
 }

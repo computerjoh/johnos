@@ -25,7 +25,6 @@
     claude-code
     obsidian
     ffmpeg
-    code-cursor
     zoom-us
   ];
 
