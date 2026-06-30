@@ -26,6 +26,7 @@
     obsidian
     ffmpeg
     zoom-us
+    lsof
   ];
 
   nix.gc = {
