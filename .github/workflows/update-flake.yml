@@ -1,4 +1,4 @@
-name: Flake Auto Update
+name: Update flake.lock
 
 on:
   schedule:
@@ -7,24 +7,20 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   update:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
+      - uses: DeterminateSystems/nix-installer-action@main
+
+      - uses: DeterminateSystems/update-flake-lock@main
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - uses: cachix/install-nix-action@v24
-
-      - name: Update flake.lock
-        run: nix flake update
-
-      - name: Commit and push flake.lock
-        run: |
-          git config user.name "danerieberbot"
-          git config user.email "danebot@proton.me"
-          git commit -am "chore: flake bump 🌱" || echo "No changes"
-          git push
+          pr-title: "chore: flake bump 🌱"
+          pr-labels: |
+            dependencies
+            automated

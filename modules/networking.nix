@@ -1,9 +1,5 @@
-{
-  pkgs,
-  config,
-  ...
-}: {
-  networking.hostName = "nixos";
+{hostname, ...}: {
+  networking.hostName = hostname;
   networking.networkmanager.enable = true;
   virtualisation.docker.enable = true;
 }

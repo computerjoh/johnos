@@ -28,7 +28,7 @@
       fps_color = "B22222,FDFD09,39F900";
       fps_value = "30,60";
 
-      output_folder = "/home/john";
+      output_folder = config.home.homeDirectory;
       log_duration = 30;
       autostart_log = 0;
       log_interval = 100;

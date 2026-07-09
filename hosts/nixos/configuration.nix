@@ -1,18 +1,18 @@
 {pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
-    ./modules/boot.nix
-    ./modules/networking.nix
-    ./modules/localization.nix
-    ./modules/users.nix
-    ./modules/desktop.nix
-    ./modules/programs/steam.nix
-    ./modules/programs/gamemode.nix
-    ./modules/services/pipewire.nix
-    ./modules/services/fstrim.nix
-    ./modules/services/music.nix
-    ./modules/hardware/mouse.nix
-    ./modules/hardware/keyboard.nix
+    ../../modules/boot.nix
+    ../../modules/networking.nix
+    ../../modules/localization.nix
+    ../../modules/users.nix
+    ../../modules/desktop.nix
+    ../../modules/programs/steam.nix
+    ../../modules/programs/gamemode.nix
+    ../../modules/services/pipewire.nix
+    ../../modules/services/fstrim.nix
+    ../../modules/services/music.nix
+    ../../modules/hardware/mouse.nix
+    ../../modules/hardware/keyboard.nix
   ];
 
   environment.systemPackages = with pkgs; [

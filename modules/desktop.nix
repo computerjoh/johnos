@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}: {
+{username, ...}: {
   services = {
     xserver.enable = true;
     desktopManager.plasma6.enable = true;
@@ -10,7 +6,7 @@
       sddm.enable = true;
       autoLogin = {
         enable = true;
-        user = "john";
+        user = username;
       };
     };
   };
