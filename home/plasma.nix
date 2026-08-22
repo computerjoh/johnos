@@ -1,4 +1,6 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  wallpaper = ../assets/wallpaper.jpg;
+in {
   programs.plasma = {
     enable = true;
     overrideConfig = true;
@@ -26,16 +28,37 @@
       powerProfile = "performance";
       whenSleepingEnter = null;
     };
-    startup.startupScript."solaar" = {
-      text = "${pkgs.solaar}/bin/solaar --window=hide &";
-      priority = 5;
-      runAlways = true;
+    startup.startupScript = {
+      "solaar" = {
+        text = "${pkgs.solaar}/bin/solaar --window=hide &";
+        priority = 5;
+        runAlways = true;
+      };
+      # plasma-manager's own wallpaper autostart script can fire before
+      # plasmashell has finished creating the desktop containments on a
+      # fresh boot, silently no-op'ing while still marking itself as
+      # applied. Re-apply after a short delay so it always sticks.
+      "fix-wallpaper-race" = {
+        text = ''
+          sleep 5
+          qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript '
+            let allDesktops = desktops();
+            for (const d of allDesktops) {
+              d.wallpaperPlugin = "org.kde.image";
+              d.currentConfigGroup = ["Wallpaper", "org.kde.image", "General"];
+              d.writeConfig("Image", "file://${wallpaper}");
+            }
+          '
+        '';
+        priority = 8;
+        runAlways = true;
+      };
     };
     workspace = {
       lookAndFeel = "org.kde.breezedark.desktop";
       theme = "breeze-dark";
       iconTheme = "Papirus";
-      wallpaper = ../assets/wallpaper.jpg;
+      wallpaper = wallpaper;
     };
     kwin.effects = {
       minimization.animation = "off";
