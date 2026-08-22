@@ -11,6 +11,7 @@
     ./home/btop.nix
     ./home/ghostty.nix
     ./home/discord.nix
+    ./home/vesktop.nix
     ./home/helix.nix
     ./home/vscode.nix
     ./home/mangohud.nix
