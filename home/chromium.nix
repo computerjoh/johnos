@@ -11,6 +11,9 @@
     ];
   };
 
+  # apps (signal, vesktop, claude) rewrite this file; always let HM win
+  xdg.configFile."mimeapps.list".force = true;
+
   # set default browser
   xdg.mimeApps = {
     enable = true;
