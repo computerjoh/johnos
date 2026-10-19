@@ -12,6 +12,7 @@
       "input"
       "plugdev"
       "docker"
+      "gamemode"
     ];
     shell = pkgs.fish;
   };
