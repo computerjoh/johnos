@@ -17,11 +17,7 @@
       text_color = "FFFFFF";
       position = "top-left";
 
-      table_columns = 3;
-      gpu_text = "GPU";
-      cpu_text = "CPU";
-
-      fps = true;
+      fps_only = true;
       fps_limit_method = "late";
       fps_limit = 0;
       fps_color_change = true;
