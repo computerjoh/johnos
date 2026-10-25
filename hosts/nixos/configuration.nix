@@ -27,6 +27,7 @@
     ffmpeg
     zoom-us
     lsof
+    vlc
   ];
 
   nix.gc = {
