@@ -11,6 +11,7 @@
     ../../modules/services/pipewire.nix
     ../../modules/services/fstrim.nix
     ../../modules/services/music.nix
+    ../../modules/services/ci-runners.nix
     ../../modules/hardware/mouse.nix
     ../../modules/hardware/keyboard.nix
   ];
@@ -28,6 +29,7 @@
     zoom-us
     lsof
     vlc
+    wl-clipboard
   ];
 
   nix.gc = {
