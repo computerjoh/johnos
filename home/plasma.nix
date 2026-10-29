@@ -60,6 +60,10 @@ in {
       iconTheme = "Papirus";
       wallpaper = wallpaper;
     };
+    # Baloo's file indexer crawled every node_modules/worktree and
+    # crash-looped (~20k core dumps an hour, each spawning a drkonqi
+    # processor). Nothing here relies on KDE file search.
+    configFile.baloofilerc."Basic Settings"."Indexing-Enabled" = false;
     kwin.effects = {
       minimization.animation = "off";
       windowOpenClose.animation = "off";
