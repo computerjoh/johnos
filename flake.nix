@@ -37,6 +37,8 @@
     mkHost = {
       hostname,
       system ? "x86_64-linux",
+      # Headless hosts (the CI box) skip home-manager and the desktop home.
+      home ? true,
     }:
       nixpkgs.lib.nixosSystem {
         inherit system;
@@ -44,6 +46,8 @@
         modules = [
           ./hosts/${hostname}/configuration.nix
           ./hosts/${hostname}/hardware-configuration.nix
+        ]
+        ++ nixpkgs.lib.optionals home [
           home-manager.nixosModules.home-manager
           {
             home-manager = {
@@ -63,6 +67,10 @@
       };
   in {
     nixosConfigurations.nixos = mkHost {hostname = "nixos";};
+    nixosConfigurations.ci = mkHost {
+      hostname = "ci";
+      home = false;
+    };
 
     formatter = forAllSystems (system: (pkgsFor system).alejandra);
 
