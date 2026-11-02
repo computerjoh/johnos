@@ -37,6 +37,18 @@
     ast-grep
   ];
 
+  # Nightly rebuild that bumps only the claude-code input; everything else
+  # stays at the revisions in flake.lock. `path:` because root reads John's
+  # repo, which git's ownership check would reject.
+  system.autoUpgrade = {
+    enable = true;
+    flake = "path:/home/john/johnos#nixos";
+    flags = ["--update-input" "claude-code"];
+    dates = "04:00";
+    randomizedDelaySec = "30min";
+    persistent = true;
+  };
+
   nix.gc = {
     automatic = true;
     dates = "daily";

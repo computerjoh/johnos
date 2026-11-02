@@ -14,6 +14,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Hourly-updated Claude Code builds, well ahead of nixpkgs.
+    claude-code.url = "github:sadjow/claude-code-nix";
+
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,6 +29,7 @@
     nixpkgs,
     home-manager,
     nur,
+    claude-code,
     plasma-manager,
     ...
   } @ inputs: let
@@ -61,7 +65,7 @@
               users.${username} = import ./home.nix;
             };
 
-            nixpkgs.overlays = [nur.overlays.default];
+            nixpkgs.overlays = [nur.overlays.default claude-code.overlays.default];
           }
         ];
       };
