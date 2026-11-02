@@ -29,6 +29,12 @@
     lsof
     vlc
     wl-clipboard
+    jq
+    fd
+    yq-go
+    postgresql
+    shellcheck
+    ast-grep
   ];
 
   nix.gc = {
