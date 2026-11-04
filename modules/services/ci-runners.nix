@@ -1,5 +1,5 @@
 # Incus, for campbuild's self-hosted GitHub Actions runners: Ubuntu system
-# containers ci-runner-1..3, each with its own Docker, made and registered by
+# containers ci-box-1..7, each with its own Docker, made and registered by
 # campbuild's scripts/ci/runner.sh.
 {username, ...}: {
   virtualisation.incus = {

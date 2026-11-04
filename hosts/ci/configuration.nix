@@ -40,6 +40,15 @@
     AllowHibernation = "no";
   };
 
+  # The runner containers' memory caps add up to more than the box's 32 GB,
+  # and it has no swap: if several jobs peak at once the host itself runs
+  # out, and the kernel can kill incusd or sshd rather than one job.
+  # Compressed swap in RAM absorbs those peaks.
+  zramSwap = {
+    enable = true;
+    memoryPercent = 25;
+  };
+
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
     trusted-users = [username];
