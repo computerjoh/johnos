@@ -75,6 +75,10 @@
       hostname = "ci";
       home = false;
     };
+    nixosConfigurations.ci2 = mkHost {
+      hostname = "ci2";
+      home = false;
+    };
 
     formatter = forAllSystems (system: (pkgsFor system).alejandra);
 
